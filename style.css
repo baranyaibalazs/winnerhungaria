@@ -79,4 +79,31 @@ input:focus,textarea:focus{outline:none;border-color:#b9c6db;box-shadow:0 0 0 3p
   color:#7b8797; font-weight:700; letter-spacing:.2px;
   border:1px dashed #cfd7e4;
 }
+/* Címsorok zöld aláhúzás */
+.title{
+  position:relative;
+}
+.title::after{
+  content:""; position:absolute; left:20px; bottom:-10px; width:72px; height:6px;
+  background:var(--brand); border-radius:999px; box-shadow:0 6px 22px rgba(141,198,63,.45);
+}
+
+/* Gomb finom erősítés */
+.btn.primary{background:var(--brand); color:#0d1309; box-shadow:0 8px 22px rgba(141,198,63,.35)}
+.btn.primary:hover{transform:translateY(-1px)}
+
+/* Kártyák zöld „top border” hoverre */
+.card{position:relative; overflow:hidden}
+.card::before{
+  content:""; position:absolute; left:0; top:0; height:4px; width:0; background:var(--brand);
+  transition:width .25s ease;
+}
+.card:hover::before{width:100%}
+
+/* Hős szekció overlay enyhén sötétebb átmenettel alul */
+.hero::after{
+  background:linear-gradient(180deg,rgba(0,0,0,.38),rgba(0,0,0,.28) 40%,
+    rgba(233,237,243,.98) 90%, var(--bg) 100%);
+}
+
 
