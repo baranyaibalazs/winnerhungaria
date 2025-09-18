@@ -1,0 +1,157 @@
+/* Winner Hungária – Neo Minimal + Osmo skin */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap');
+
+:root{
+  --bg:#F7F8FA;
+  --panel:#FFFFFF;
+  --ink:#0B0E11;
+  --muted:#6B7280;
+  --line:#E9EDF3;
+  --brand:#0B0E11;
+  --brand-ink:#0B0E11;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(15,18,22,.06);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,sans-serif;
+  color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased; line-height:1.55;
+}
+a{color:inherit;text-decoration:none}
+
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.section{padding:96px 0}
+.section-title{
+  font-size:clamp(30px,3.6vw,44px);
+  letter-spacing:-.015em; font-weight:800; color:#111; margin:0 0 24px;
+}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:960px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:640px){ .grid{grid-template-columns:1fr} }
+
+/* Header */
+.site-header{
+  position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px);
+  background:rgba(255,255,255,.86); border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex; align-items:center; justify-content:space-between; height:72px}
+.brand img{height:36px; width:auto}
+.nav{display:flex; gap:22px}
+.nav a{color:#0B0E11; font-weight:800; letter-spacing:.2px}
+.nav a:hover{ color:#111 }
+.header-cta{ display:none }
+@media (min-width:900px){ .header-cta{display:inline-flex} }
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.9rem 1.25rem; border-radius:999px; font-weight:800; border:1px solid transparent;
+  transition:transform .06s ease, background .2s ease, border-color .2s ease;
+}
+.btn:active{ transform:translateY(1px) }
+.btn-primary{ background:#111; color:#fff; box-shadow:0 10px 30px rgba(0,0,0,.15) }
+.btn-primary:hover{ transform:translateY(-2px) }
+.btn-ghost{ background:transparent; border-color:rgba(255,255,255,.55); color:#fff }
+.btn-ghost:hover{ background:rgba(255,255,255,.12) }
+
+/* Cards */
+.card{
+  background:var(--panel); border:1px solid #EEF2F7; border-radius:var(--radius); padding:22px;
+  box-shadow:var(--shadow); transition:transform .15s ease, box-shadow .15s ease;
+}
+.card:hover{ transform:translateY(-2px); box-shadow:0 16px 40px rgba(15,18,22,.08) }
+.card .role{ color:var(--muted); margin:.1rem 0 .6rem; font-weight:600 }
+
+/* HERO */
+.hero-osmo{
+  position:relative; height:clamp(520px, 92vh, 820px);
+  display:flex; align-items:center; overflow:hidden; background:#fff;
+}
+.hero-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.04) }
+.hero-overlay{ position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.52) 0%, rgba(0,0,0,.36) 38%, rgba(0,0,0,.22) 100%);
+}
+.hero-inner{ position:relative; z-index:1; width:100%; max-width:1200px; margin:0 auto; padding:0 20px; color:#fff }
+.hero-brand{ width:170px; height:auto; margin-bottom:18px; filter:drop-shadow(0 8px 24px rgba(0,0,0,.35)) }
+.hero-title{ margin:0 0 10px; font-weight:800; line-height:1.05; font-size:clamp(44px, 8vw, 84px); letter-spacing:-0.02em }
+.hero-sub{ margin:0 0 22px; font-size:clamp(14px,1.8vw,16px); text-transform:uppercase; letter-spacing:.18em; opacity:.92 }
+.hero-cta{ display:flex; gap:12px; flex-wrap:wrap }
+@media (max-width:720px){ .hero-brand{width:150px} .hero-cta .btn{width:100%; text-align:center} }
+
+/* About */
+.about .about-body{ max-width:900px }
+.about-list{ margin:16px 0 0 18px; padding:0 }
+.about-list li{ margin:.2rem 0; color:#2A3139 }
+
+/* Quote form */
+.quote-form{ background:#fff; border:1px solid #EEF2F7; border-radius:16px; padding:24px; box-shadow:var(--shadow) }
+.quote-form .row{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:14px }
+.quote-form .row .wide{ grid-column:1 / -1 }
+.quote-form label{ display:flex; flex-direction:column; gap:6px; font-weight:700; color:#0B0E11 }
+.quote-form input, .quote-form textarea{
+  border:1px solid #E1E7EF; border-radius:12px; padding:12px 14px; font:inherit; color:#0B0E11; background:#fff;
+}
+.quote-form input:focus, .quote-form textarea:focus{ outline:2px solid rgba(0,0,0,.15); outline-offset:2px }
+.quote-form .hp{ display:none !important } /* honeypot */
+.quote-form .actions{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-top:6px }
+.form-small{ margin:0; font-size:.9rem; color:#6B7280 }
+@media (max-width:780px){ .quote-form .row{ grid-template-columns:1fr } }
+
+/* Kapcsolat */
+.contact-wrap{ display:grid; grid-template-columns:1fr 1.2fr; gap:20px; align-items:start }
+.contact-text p{ margin:.3rem 0 }
+.contact-map iframe{ width:100%; height:360px; border:0; border-radius:16px; box-shadow:var(--shadow) }
+@media (max-width:900px){ .contact-wrap{ grid-template-columns:1fr } .contact-map iframe{ height:300px } }
+
+/* Galéria – kisebb, egységes magasság */
+.gallery .container{ position:relative }
+.gallery-swiper{ position:relative; width:100% }
+.gallery-swiper .swiper-wrapper{ align-items:stretch }
+.gallery-slide{
+  /* Egységes képarány és maximum magasság */
+  aspect-ratio: 16 / 9;
+  max-height: 260px;
+}
+.gallery-slide img{
+  width:100%; height:100%; object-fit:cover;
+  border-radius:24px; border:1px solid #EEF2F7; box-shadow:0 12px 32px rgba(17,24,39,.08);
+  transition:transform .25s ease;
+}
+.gallery-slide:hover img{ transform:scale(1.02) }
+
+.gallery-buttons{ position:absolute; inset:auto 0 -56px 0; display:flex; gap:10px; justify-content:center }
+.gallery-prev,.gallery-next{
+  width:38px; height:38px; border-radius:50%; border:1px solid #D6DDE5; background:#fff; cursor:pointer;
+}
+.gallery-prev:hover,.gallery-next:hover{ background:#f5f7fa }
+.gallery-pagination{ margin-top:14px; text-align:center }
+.swiper-pagination-bullet{ background:#C8CFD9; opacity:1 }
+.swiper-pagination-bullet-active{ background:#0B0E11 }
+
+/* CTA */
+.cta{ background:#fff; text-align:center }
+.cta .container{ display:flex; flex-direction:column; gap:14px; align-items:center }
+.cta p{ margin:0; font-weight:800; font-size:clamp(18px,2.2vw,22px) }
+
+/* Footer */
+.footer{ padding:36px 0; border-top:1px solid #EEF2F7; background:#fff }
+.footer p{ margin:0; color:#6B7280; text-align:center }
+
+/* Preloader */
+#preloader{
+  position:fixed; inset:0; background:#111; color:#fff; display:grid; place-items:center;
+  z-index:1000; transition:opacity .35s ease, visibility .35s ease;
+}
+#preloader.hidden{ opacity:0; visibility:hidden }
+.spinner{
+  width:48px; height:48px; border:4px solid rgba(255,255,255,.25); border-top-color:#fff; border-radius:50%;
+  animation:spin 1s linear infinite; margin:0 auto 14px;
+}
+.preloader-motto{ margin:0; opacity:.85; letter-spacing:.2px }
+@keyframes spin{ to{ transform:rotate(360deg) } }
+
+/* Focus ring */
+:focus-visible{ outline:2px solid rgba(0,0,0,.2); outline-offset:3px; border-radius:6px }
