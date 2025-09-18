@@ -80,4 +80,25 @@
       form.reset();
     });
   })();
+// Fallback animáció, ha AOS nem érhető el
+(function(){
+  if (window.AOS) return;
+  const els = document.querySelectorAll('[data-aos]');
+  els.forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+  });
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(({isIntersecting,target})=>{
+      if(isIntersecting){
+        target.style.opacity = 1;
+        target.style.transform = 'translateY(0)';
+        observer.unobserve(target);
+      }
+    });
+  },{threshold:0.15});
+  els.forEach(el => observer.observe(el));
+})();
+
   
