@@ -14,3 +14,13 @@ document.getElementById('quoteForm')?.addEventListener('submit', (e)=>{
   e.preventDefault();
   alert('Köszönjük! Az űrlap teszt módban van, e-mail küldés nélkül.');
 });
+// Ha bármelyik galéria kép nem tölt be, a CSS jelzi (lásd onerror).
+// Plusz: ha minden rendben, biztosítsuk, hogy a grid szépen rajzolódjon.
+window.addEventListener('load', () => {
+  document.querySelectorAll('.gallery img').forEach(img => {
+    if (!img.complete || img.naturalWidth === 0) {
+      img.dataset.broken = 1; img.src = '';
+    }
+  });
+});
+
