@@ -106,4 +106,51 @@ input:focus,textarea:focus{outline:none;border-color:#b9c6db;box-shadow:0 0 0 3p
     rgba(233,237,243,.98) 90%, var(--bg) 100%);
 }
 
+/* ===== Flat kártyák – csak alsó zöld elválasztó ===== */
+.card, .member{
+  background:transparent;
+  border:none;
+  box-shadow:none;
+  padding:0 0 18px;
+  position:relative;
+}
+.card::after, .member::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0;
+  height:2px; background:var(--brand); opacity:.7;
+  border-radius:999px;
+  transition:height .18s ease, opacity .18s ease, box-shadow .18s ease;
+}
+.card:hover::after, .member:hover::after{
+  height:3px; opacity:1;
+  box-shadow:0 6px 18px rgba(141,198,63,.35);
+}
+
+/* címsor & szöveg spacing kicsit feszesebb flat stílushoz */
+.card h3, .member h3{ margin:0 0 6px }
+.card p, .member .role, .member p{ margin:0; color:var(--muted) }
+
+/* ===== Galéria – reveal a képre, ne a keretre ===== */
+.gallery figure{
+  background:transparent; border:1px solid #dfe6f2;  /* csak vékony elválasztó */
+  box-shadow:none;
+}
+.gallery figure.reveal-on-scroll img{
+  opacity:0; transform:translateY(18px) scale(1.02);
+  transition:opacity .6s ease, transform .6s ease;
+  will-change:opacity, transform;
+}
+.gallery figure.reveal-on-scroll.in img{
+  opacity:1; transform:none;
+}
+
+/* ===== Scroll reveal általános (kártyák) ===== */
+.reveal-on-scroll{
+  opacity:0; transform:translateY(16px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+.reveal-on-scroll.in{
+  opacity:1; transform:none;
+}
+
 
