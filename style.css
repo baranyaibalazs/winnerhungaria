@@ -112,14 +112,17 @@ a{color:inherit;text-decoration:none}
 .gallery-swiper .swiper-wrapper{ align-items:stretch }
 .gallery-slide{
   /* Egységes képarány és maximum magasság */
+.gallery-slide{
   aspect-ratio: 16 / 9;
-  max-height: 260px;
+  max-height: 240px;   /* kisebb mint eddig */
 }
 .gallery-slide img{
   width:100%; height:100%; object-fit:cover;
-  border-radius:24px; border:1px solid #EEF2F7; box-shadow:0 12px 32px rgba(17,24,39,.08);
+  border-radius:20px; border:1px solid #EEF2F7;
+  box-shadow:0 10px 24px rgba(17,24,39,.08);
   transition:transform .25s ease;
 }
+
 .gallery-slide:hover img{ transform:scale(1.02) }
 
 .gallery-buttons{ position:absolute; inset:auto 0 -56px 0; display:flex; gap:10px; justify-content:center }
@@ -162,4 +165,5 @@ a{color:inherit;text-decoration:none}
   padding:0 20px;
   display:block;
 }
+
 
