@@ -24,3 +24,28 @@ window.addEventListener('load', () => {
   });
 });
 
+// --- Scroll reveal (stagger) ---
+(function(){
+  const els = Array.from(document.querySelectorAll('.reveal-on-scroll'));
+  if(!('IntersectionObserver' in window) || els.length===0){
+    els.forEach(el=>el.classList.add('in'));
+    return;
+  }
+
+  // kis késleltetés a soron belül (0, 60, 120ms, stb.)
+  els.forEach((el, i)=> el.style.setProperty('--reveal-delay', `${(i%12)*60}ms`));
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        // alkalmazzuk a késleltetést csak itt, amikor belép
+        e.target.style.transitionDelay = getComputedStyle(e.target).getPropertyValue('--reveal-delay') || '0ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+
+  els.forEach(el=>io.observe(el));
+})();
+
