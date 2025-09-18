@@ -1,11 +1,12 @@
 :root{
-  --brand:#8DC63F;
+  --brand:#8DC63F;       /* Winner zöld */
   --ink:#0f172a;
-  --muted:#6b7280;
-  --bg:#F6F7FA;
+  --muted:#64748b;
+  --bg:#E9EDF3;          /* sötétebb, mint a korábbi F6F7FA */
   --card:#ffffff;
   --ring:rgba(15,23,42,.08);
 }
+
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -68,3 +69,14 @@ input:focus,textarea:focus{outline:none;border-color:#b9c6db;box-shadow:0 0 0 3p
   #quoteForm{grid-template-columns:1fr}
   .nav{display:none}
 }
+/* Galéria egységes arány + törött kép jelzés */
+.gallery figure{ position:relative; }
+.gallery figure img[data-broken="1"]{ display:none; }
+.gallery figure:has(img[data-broken="1"])::after{
+  content:"Kép nem található"; position:absolute; inset:0;
+  display:grid; place-items:center; border-radius:16px;
+  background:repeating-linear-gradient(45deg,#f2f4f8,#f2f4f8 10px,#eceff5 10px,#eceff5 20px);
+  color:#7b8797; font-weight:700; letter-spacing:.2px;
+  border:1px dashed #cfd7e4;
+}
+
