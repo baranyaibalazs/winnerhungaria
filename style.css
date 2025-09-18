@@ -155,3 +155,11 @@ a{color:inherit;text-decoration:none}
 
 /* Focus ring */
 :focus-visible{ outline:2px solid rgba(0,0,0,.2); outline-offset:3px; border-radius:6px }
+/* --- FIX: section-címek konténerbe --- */
+.section > .section-title{
+  max-width:1200px;
+  margin:0 auto 24px;
+  padding:0 20px;
+  display:block;
+}
+
