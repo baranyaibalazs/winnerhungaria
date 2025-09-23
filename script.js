@@ -62,6 +62,7 @@ function setupServiceCards(){
 }
 
 /* -------- Auto-scroll galéria: DOM-ba illesztés UTÁN mérünk szélességet -------- */
+/* --- Auto-scroll galéria: egységes csempe-méret (cover) --- */
 function buildGallery(){
   const wrap = document.querySelector('.auto-gallery');
   if(!wrap) return;
@@ -73,38 +74,29 @@ function buildGallery(){
 
   const tryLoad = src => new Promise(res=>{
     const img = new Image();
-    img.onload = () => res({ok:true,src,ratio: img.naturalWidth/img.naturalHeight || 1.6});
-    img.onerror = () => {
-      console.warn('[Galéria] Nem tölthető be:', base+src);
-      res({ok:false,src});
-    };
+    img.onload = () => res({ok:true,src});
+    img.onerror = () => { console.warn('[Galéria] Nem tölthető be:', base+src); res({ok:false,src}); };
     img.src = base + src;
   });
 
   Promise.all(files.map(tryLoad)).then(results=>{
     const ok = results.filter(r=>r.ok);
-    if(ok.length===0){
-      console.warn('[Galéria] Nincs használható kép.');
-      return;
-    }
+    if(ok.length===0){ console.warn('[Galéria] Nincs használható kép.'); return; }
 
-    const tiles = [];
+    const TILE_W = 280; // egységes szélesség (CSS-sel összhangban)
     const addTile = (r) => {
       const fig = document.createElement('figure');
       fig.className = 'tile';
+      fig.style.width = TILE_W + 'px';   // <<< fixáljuk
       const img = document.createElement('img');
       img.src = base + r.src;
       img.alt = 'Galéria kép';
       fig.appendChild(img);
-      track.appendChild(fig);              // << előbb a DOM-ba tesszük
-      const h = fig.getBoundingClientRect().height || 180; // itt már mérhető
-      const w = Math.min(520, Math.max(160, Math.round(h * r.ratio)));
-      fig.style.width = w + 'px';
-      tiles.push(fig);
+      track.appendChild(fig);
     };
 
     ok.forEach(addTile);
-    ok.forEach(r => addTile(r));           // duplázás a végtelenítéshez
+    ok.forEach(addTile); // végtelenítés
 
     const dur = Math.max(10, Number(wrap.dataset.speed) || 20);
     wrap.style.setProperty('--dur', dur + 's');
@@ -112,9 +104,23 @@ function buildGallery(){
   });
 }
 
+
 /* -------- Init -------- */
 document.addEventListener('DOMContentLoaded', ()=>{
   setupReveal();
   setupServiceCards();
   buildGallery();
 });
+/* --- SERVICE CARD: dinamikus magasság-kiegyenlítés --- */
+function balanceCardHeights(){
+  document.querySelectorAll('.service-card .inner').forEach(inner=>{
+    const f = inner.querySelector('.front');
+    const b = inner.querySelector('.back');
+    if(!f || !b) return;
+    const h = Math.max(f.scrollHeight, b.scrollHeight, 220);  // legalább 220
+    inner.style.minHeight = h + 'px';
+  });
+}
+window.addEventListener('load', balanceCardHeights);
+window.addEventListener('resize', ()=>{ clearTimeout(window._bhT); window._bhT=setTimeout(balanceCardHeights, 120); });
+
