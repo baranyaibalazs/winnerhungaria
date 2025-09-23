@@ -27,15 +27,43 @@ body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,
 .menu{margin-left:auto;display:flex;gap:18px;align-items:center}
 .menu a{color:var(--ink);text-decoration:none;font-weight:600}
 
-/* HERO – visszaállított alap stílus */
-.hero{position:relative;overflow:hidden;padding:72px 0 60px;color:#fff}
-.hero-bg{
-  position:absolute;inset:0;
-  background:url('media/hero-1.jpg') center/cover no-repeat;
-  filter:brightness(.55); z-index:-1;
+/* HERO – alapverzió */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
 }
-.hero-content{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:46vh}
-.cta{display:flex;gap:14px}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('media/hero-1.jpg') center/cover no-repeat;
+  z-index: -2;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.55); /* overlay sötétítés */
+  z-index: -1;
+}
+.hero-content {
+  max-width: 800px;
+  padding: 20px;
+}
+.hero .xl {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+.hero .lead {
+  font-size: 20px;
+  margin-bottom: 24px;
+  color: #e5e5e5;
+}
 
 /* CARDS – szolgáltatások */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -69,10 +97,22 @@ body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,
 /* TEAM – kompakt flip kártyák */
 .team .team-card{position:relative}
 .team .inner{position:relative;perspective:1000px}
-.team .front,.team .back{
-  border:1px solid var(--ring);border-radius:14px;background:var(--card);
-  padding:16px;min-height:140px;box-shadow:var(--shadow);
-  backface-visibility:hidden;transform-style:preserve-3d;transition:transform .28s ease-in-out;
+.team .front,
+.team .back {
+  min-height: 110px;        /* kisebb magasság */
+  padding: 14px;
+}
+.team h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.team p {
+  font-size: 13px;
+  margin: 0;
+}
+.team .back p {
+  font-size: 13px;
+  margin: 2px 0;
 }
 .team .back{position:absolute;inset:0;transform:rotateY(180deg)}
 .team .team-card:hover .front,.team .team-card:focus-within .front{transform:rotateY(180deg)}
@@ -146,3 +186,4 @@ input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid 
 
 /* Galéria animáció */
 @keyframes autoScroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
