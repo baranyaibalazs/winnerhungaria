@@ -1,262 +1,173 @@
 <!doctype html>
 <html lang="hu">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Winner Hungária Kft – Frigo Transport & Logistics</title>
-  <link rel="icon" href="media/logo.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="media/truck-02.jpg">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header class="header">
-    <div class="container head">
-      <a class="brand" href="#hero"><img src="media/logo.png" alt="Winner Hungária Kft"></a>
-      <nav class="nav">
+  <!-- ===== Header / Hero ===== -->
+  <header class="site-header">
+    <div class="container nav">
+      <img class="brand" src="media/logo.png" alt="Winner Hungária Kft" />
+      <nav class="menu">
         <a href="#services">Szolgáltatások</a>
-        <a href="#team">Munkatársaink</a>
         <a href="#gallery">Galéria</a>
         <a href="#contact">Kapcsolat</a>
-        <a class="btn" href="#quote">Ajánlatkérés</a>
+        <a class="btn primary" href="#contact">Ajánlatkérés</a>
       </nav>
     </div>
+
+    <section class="hero">
+      <div class="container">
+        <h1 class="xl reveal-on-scroll">Mozgásban a bizalom, úton a minőség.</h1>
+        <p class="lead reveal-on-scroll">FRIGO TRANSPORT &amp; LOGISTICS • Európa-szerte</p>
+        <div class="cta reveal-on-scroll">
+          <a class="btn primary" href="#contact">Kérj ajánlatot</a>
+          <a class="btn" href="#team">Csapatunk</a>
+        </div>
+      </div>
+      <div class="hero-bg"></div>
+    </section>
   </header>
 
-  <section id="hero" class="hero">
-    <img src="media/hero.jpg" alt="">
-    <div class="hero-inner container">
-      <h1>Mozgásban a bizalom,<br> úton a minőség.</h1>
-      <p>FRIGO TRANSPORT &amp; LOGISTICS • Európa-szerte</p>
-      <div class="actions">
-        <a class="btn primary" href="#quote">Kérj ajánlatot</a>
-        <a class="btn ghost" href="#team">Csapatunk</a>
-      </div>
-    </div>
-  </section>
-
+  <!-- ===== Szolgáltatások – FLIP + Több infó (A + C) ===== -->
   <section id="services" class="section">
     <div class="container">
       <h2 class="title">Szolgáltatásaink</h2>
-      <div class="grid3">
-        <article class="card reveal-on-scroll">
-          <h3>Hűtős nemzetközi</h3>
-          <p>Hőfokkontroll, folyamatos monitoring, EU-relációk – megbízható határidőkkel.</p>
+
+      <div class="cards">
+        <!-- 1 -->
+        <article class="service-card reveal-on-scroll" data-service="Hűtős nemzetközi">
+          <div class="inner" aria-live="polite">
+            <div class="front">
+              <h3>Hűtős nemzetközi</h3>
+              <p>Hőfokkontroll, folyamatos monitoring, megbízható határidő.</p>
+            </div>
+            <div class="back">
+              <h3>Hűtős nemzetközi</h3>
+              <ul>
+                <li>24/7 diszpécser • temp. log</li>
+                <li>EU relációk • gyors kapacitás</li>
+                <li>POD, KPI riport</li>
+              </ul>
+              <button class="more" type="button" aria-expanded="false">Több infó <span class="chev">▾</span></button>
+            </div>
+          </div>
+
+          <!-- Inline panel (desktop) -->
+          <div class="inline-panel" hidden>
+            <p>Speciális hőmérséklet-igényekhez kalibrált járműpark, digitális nyomon követés, ellenőrzött rakodás.</p>
+            <a class="link-cta" href="#contact" data-prefill="Hűtős nemzetközi">Ajánlatkérés ehhez a szolgáltatáshoz</a>
+          </div>
         </article>
-        <article class="card reveal-on-scroll">
-          <h3>Belföldi logisztika</h3>
-          <p>Gyors reakció, rugalmas kapacitás, pontos kézbesítés – országosan.</p>
+
+        <!-- 2 -->
+        <article class="service-card reveal-on-scroll" data-service="Belföldi logisztika">
+          <div class="inner">
+            <div class="front">
+              <h3>Belföldi logisztika</h3>
+              <p>Gyors reagálás, rugalmas kapacitás, pontos kézbesítés.</p>
+            </div>
+            <div class="back">
+              <h3>Belföldi logisztika</h3>
+              <ul>
+                <li>Napi gyűjtő • same-day opció</li>
+                <li>Országos lefedettség</li>
+                <li>POD visszaigazolás</li>
+              </ul>
+              <button class="more" type="button" aria-expanded="false">Több infó <span class="chev">▾</span></button>
+            </div>
+          </div>
+          <div class="inline-panel" hidden>
+            <p>Országos hálózat, optimalizált útvonaltervezés és valós idejű státuszjelentés.</p>
+            <a class="link-cta" href="#contact" data-prefill="Belföldi logisztika">Ajánlatkérés ehhez a szolgáltatáshoz</a>
+          </div>
         </article>
-        <article class="card reveal-on-scroll">
-          <h3>Speciális megoldások</h3>
-          <p>Érzékeny áru, multi-drop, egyedi rakodási igények és ütemezések.</p>
+
+        <!-- 3 -->
+        <article class="service-card reveal-on-scroll" data-service="Speciális megoldások">
+          <div class="inner">
+            <div class="front">
+              <h3>Speciális megoldások</h3>
+              <p>Érzékeny áru, multi-drop, egyedi rakodási igények.</p>
+            </div>
+            <div class="back">
+              <h3>Speciális megoldások</h3>
+              <ul>
+                <li>Ütemezett idősávok</li>
+                <li>ADR-kompatibilitás</li>
+                <li>Hosszú távú SLA</li>
+              </ul>
+              <button class="more" type="button" aria-expanded="false">Több infó <span class="chev">▾</span></button>
+            </div>
+          </div>
+          <div class="inline-panel" hidden>
+            <p>Egyedi projektlogisztika, több ponton rakodás, dedikált jármű és sofőr.</p>
+            <a class="link-cta" href="#contact" data-prefill="Speciális megoldások">Ajánlatkérés ehhez a szolgáltatáshoz</a>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
-  <section id="team" class="section">
-    <div class="container">
-      <h2 class="title">Munkatársaink</h2>
-      <div class="grid3">
-        <div class="member reveal-on-scroll">
-          <h3>Lipták Andrea</h3>
-          <p class="role">Adminisztrátor</p>
-          <p><span class="email" data-u="office" data-d="winnerhungaria.hu"></span></p>
-          <p>+36 20 403 4664</p>
-        </div>
-        <div class="member reveal-on-scroll">
-          <h3>Baranyai Balázs</h3>
-          <p class="role">Nemzetközi &amp; Belföldi Fuvarszervező</p>
-          <p><span class="email" data-u="fuvarszervezes" data-d="winnerhungaria.hu"></span></p>
-          <p>+36 70 882 8480</p>
-        </div>
-        <div class="member reveal-on-scroll">
-          <h3>Nagy Márió</h3>
-          <p class="role">Flotta menedzser</p>
-          <p><span class="email" data-u="irodahr" data-d="winnerhungaria.hu"></span></p>
-          <p>+36 70 607 4948</p>
-        </div>
-        <div class="member reveal-on-scroll">
-          <h3>Áron Kinsztler</h3>
-          <p class="role">Nemzetközi &amp; Belföldi Fuvarszervező</p>
-          <p><span class="email" data-u="fuvarszervezes" data-d="winnerhungaria.hu"></span></p>
-          <p>+36 70 423 3588</p>
-        </div>
-        <div class="member reveal-on-scroll">
-          <h3>Tóth Andrea</h3>
-          <p class="role">Pénzügy</p>
-          <p><span class="email" data-u="info" data-d="winnerhungaria.hu"></span></p>
-          <p>+36 20 507 5020</p>
-        </div>
-        <div class="member reveal-on-scroll">
-          <h3>Eperjesiné Csala Zsuzsanna</h3>
-          <p class="role">Adminisztrátor</p>
-          <p><span class="email" data-u="officehr" data-d="winnerhungaria.hu"></span></p>
-          <p>+36 70 881 5952</p>
-        </div>
-        <div class="member reveal-on-scroll">
-          <h3>Kordován Attila</h3>
-          <p class="role">Szerviz</p>
-          <p><span class="email" data-u="muhely" data-d="winnerhungaria.hu"></span></p>
-          <p>+36 70 885 6871</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Auto-scroll Galéria ===== -->
+  <!-- ===== Auto-scroll Galéria (fix magasság, arányos szélesség) ===== -->
   <section id="gallery" class="section">
     <div class="container">
       <h2 class="title">Galéria</h2>
-      <div class="auto-gallery reveal-on-scroll">
-        <div class="track">
-          <!-- Egyszerű ASCII fájlnevek – cseréld a sajátjaidra/renamed képekre -->
-          <figure class="tile"><img src="media/truck-2.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-3.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-4.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-5.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-6.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-7.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-8.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-9.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-10.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-11.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-12.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-13.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-14.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-15.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-16.jpg" alt=""></figure>
 
-          <!-- duplázás a végtelen szalaghoz -->
-          <figure class="tile"><img src="media/truck-2.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-3.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-4.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-5.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-6.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-7.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-8.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-9.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-10.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-11.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-12.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-13.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-14.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-15.jpg" alt=""></figure>
-          <figure class="tile"><img src="media/truck-16.jpg" alt=""></figure>
+      <div class="auto-gallery reveal-on-scroll" data-speed="20">
+        <div class="track" aria-label="Képgaléria automatikus görgetéssel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Kapcsolat + Ajánlatkérés (2 oszlop) ===== -->
+  <section id="contact" class="section">
+    <div class="container two-col">
+      <div class="col reveal-on-scroll">
+        <h2 class="title">Kérj ajánlatot</h2>
+        <form id="quoteForm" class="form">
+          <div class="f2">
+            <input type="text" name="name" placeholder="Név" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+          </div>
+          <input type="tel" name="phone" placeholder="+36 …">
+          <input type="text" name="service" id="serviceField" placeholder="Szolgáltatás (opcionális)">
+          <textarea name="msg" rows="4" placeholder="Rövid leírás…"></textarea>
+          <button class="btn primary" type="submit">Elküldés</button>
+        </form>
+      </div>
+
+      <div class="col reveal-on-scroll">
+        <h2 class="title">Kapcsolat &amp; Székhely</h2>
+        <div class="mapwrap">
+          <iframe title="Winner Hungária székhely" loading="lazy"
+            src="https://www.google.com/maps?q=Winner%20Hung%C3%A1ria%20Kft&output=embed"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="section">
-  <div class="container two-col">
-    <!-- Bal: ajánlatkérés -->
-    <div class="col reveal-on-scroll">
-      <h2 class="title">Kérj ajánlatot</h2>
-      <form id="quoteForm" class="form">
-        <div class="f2">
-          <input type="text" name="name" placeholder="Név" required>
-          <input type="email" name="email" placeholder="E-mail" required>
-        </div>
-        <input type="tel" name="phone" placeholder="+36 …">
-        <textarea name="msg" rows="4" placeholder="Rövid leírás…"></textarea>
-        <button class="btn primary" type="submit">Elküldés</button>
-      </form>
-    </div>
-
-    <!-- Jobb: térkép -->
-    <div class="col reveal-on-scroll">
-      <h2 class="title">Kapcsolat &amp; Székhely</h2>
-      <div class="mapwrap">
-        <iframe title="Winner Hungária székhely" loading="lazy"
-          src="https://www.google.com/maps?q=Winner%20Hung%C3%A1ria%20Kft&output=embed"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+  <!-- ===== Mobil bottom-sheet a „Több infó”-hoz ===== -->
+  <div id="sheet" class="sheet" aria-modal="true" role="dialog" hidden>
+    <div class="sheet__backdrop"></div>
+    <div class="sheet__panel" role="document">
+      <button class="sheet__close" aria-label="Bezárás">✕</button>
+      <div class="sheet__content"></div>
     </div>
   </div>
-</section>
 
-
-  <footer class="footer">
+  <footer class="site-footer">
     <div class="container">
-      <p>© <span id="y"></span> Winner Hungária Kft • Minden jog fenntartva</p>
+      <small>© Winner Hungária Kft</small>
     </div>
   </footer>
 
-  <script>
-    // évszám
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // e-mail obfuszkáció
-    document.querySelectorAll('.email').forEach(el=>{
-      const u=el.getAttribute('data-u'), d=el.getAttribute('data-d');
-      if(u && d){ const a=u+"@"+d; el.innerHTML = '<a href="mailto:'+a+'">'+a+'</a>'; }
-    });
-
-    // form demo
-    document.getElementById('quoteForm').addEventListener('submit', e=>{
-      e.preventDefault();
-      alert('Köszönjük! (Teszt üzemmód)');
-    });
-
-    // törött képek – jelöld a tile-t 'empty'-re (kulturált placeholder)
-    function markBrokenImages(scope=document){
-      scope.querySelectorAll('.auto-gallery .tile img').forEach(img=>{
-        const mark=()=>{ const t=img.closest('.tile'); if(t) t.classList.add('empty'); };
-        img.addEventListener('error', mark, {once:true});
-        if(img.complete && img.naturalWidth===0) mark();
-      });
-    }
-
-    // scroll reveal – stabil + első ellenőrzés + fallback
- function setupReveal(){
-    const els = document.querySelectorAll('.reveal-on-scroll');
-    if(!els.length) return;
-
-    if('IntersectionObserver' in window){
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){
-            e.target.classList.add('in');
-          } else {
-            e.target.classList.remove('in');  // kilépéskor vissza
-          }
-        });
-      }, {threshold:0.15, rootMargin:'0px 0px -5% 0px'});
-
-      els.forEach(el=>io.observe(el));
-
-      // első ellenőrzés – ami már a viewportban van, legyen aktív
-      requestAnimationFrame(()=>{
-        els.forEach(el=>{
-          const r = el.getBoundingClientRect();
-          if(r.top < innerHeight*0.85 && r.bottom > 0) el.classList.add('in');
-        });
-      });
-    } else {
-      // nagyon régi böngészők
-      els.forEach(el=>el.classList.add('in'));
-    }
-  }
-
-  // törött képek jelölése változatlanul mehet
-  function markBrokenImages(scope=document){
-    scope.querySelectorAll('.auto-gallery .tile img').forEach(img=>{
-      const mark=()=>{ const t=img.closest('.tile'); if(t) t.classList.add('empty'); };
-      img.addEventListener('error', mark, {once:true});
-      if(img.complete && img.naturalWidth===0) mark();
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', ()=>{
-    markBrokenImages();
-    setupReveal();
-  });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
