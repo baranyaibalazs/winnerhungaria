@@ -9,7 +9,6 @@
 </head>
 <body>
 
-  <!-- Header / nav -->
   <header class="header">
     <div class="container head">
       <a class="brand" href="#hero"><img src="media/logo.png" alt="Winner Hungária Kft"></a>
@@ -23,9 +22,8 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <section id="hero" class="hero">
-    <img src="media/hero.jpg" alt="Winner Hungária – frigo logisztika">
+    <img src="media/hero.jpg" alt="">
     <div class="hero-inner container">
       <h1>Mozgásban a bizalom,<br> úton a minőség.</h1>
       <p>FRIGO TRANSPORT &amp; LOGISTICS • Európa-szerte</p>
@@ -36,7 +34,6 @@
     </div>
   </section>
 
-  <!-- Szolgáltatások -->
   <section id="services" class="section">
     <div class="container">
       <h2 class="title">Szolgáltatásaink</h2>
@@ -57,7 +54,6 @@
     </div>
   </section>
 
-  <!-- Munkatársak -->
   <section id="team" class="section">
     <div class="container">
       <h2 class="title">Munkatársaink</h2>
@@ -108,36 +104,36 @@
     </div>
   </section>
 
-  <!-- Galéria -->
- <section id="gallery" class="section">
-  <div class="container">
-    <h2 class="title">Galéria</h2>
+  <!-- ===== Auto-scroll Galéria ===== -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2 class="title">Galéria</h2>
+      <div class="auto-gallery reveal-on-scroll">
+        <div class="track">
+          <!-- Egyszerű ASCII fájlnevek – cseréld a sajátjaidra/renamed képekre -->
+          <figure class="tile"><img src="media/gallery-01.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-02.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-03.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-04.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-05.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-06.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-07.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-08.jpg" alt=""></figure>
 
-    <!-- Auto-scroll galéria, egységes méretű csempékkel -->
-    <div class="auto-gallery reveal-on-scroll">
-      <div class="track">
-        <figure class="tile"><img src="media/truck-1.jpg" alt=""></figure>
-        <figure class="tile"><img src="media/truck-2.jpg" alt=""></figure>
-        <figure class="tile"><img src="media/truck-3.jpg" alt=""></figure>
-        <figure class="tile"><img src="media/truck-4.jpg" alt=""></figure>
-        <figure class="tile"><img src="media/truck-5.jpg" alt=""></figure>
-        <figure class="tile"><img src="media/truck-6.jpg" alt=""></figure>
-        <!-- duplázás a végtelen loophoz -->
-        <figure class="tile"><img src="media/truck-1.jpg" alt=""></figure>
-        <figure class="tile"><img src="media/truck-2.jpg" alt=""></figure>
-        <figure class="tile"><img src="media/truck-3.jpg" alt=""></figure>
-        <figure class="tile"><img src="media/truck-4.jpg" alt=""></figure>
-        <figure class="tile"><img src="media/truck-5.jpg" alt=""></figure>
-        <figure class="tile"><img src="media/truck-6.jpg" alt=""></figure>
+          <!-- duplázás a végtelen szalaghoz -->
+          <figure class="tile"><img src="media/gallery-01.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-02.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-03.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-04.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-05.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-06.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-07.jpg" alt=""></figure>
+          <figure class="tile"><img src="media/gallery-08.jpg" alt=""></figure>
+        </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-
-
-  <!-- Ajánlatkérés + Kapcsolat -->
   <section id="quote" class="section">
     <div class="container">
       <h2 class="title">Kérj ajánlatot</h2>
@@ -170,92 +166,73 @@
     </div>
   </footer>
 
-  <!-- Minimális JS: évszám, e-mail obfuszkáció, scroll reveal, törött képek rejtése -->
- <script>
-  // Lábléc évszám
-  document.getElementById('y') && (document.getElementById('y').textContent = new Date().getFullYear());
+  <script>
+    // évszám
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-  // E-mail obfuszkáció
-  document.querySelectorAll('.email').forEach(el=>{
-    const u=el.getAttribute('data-u'), d=el.getAttribute('data-d');
-    if(u && d){ const a=u+"@"+d; el.innerHTML = '<a href="mailto:'+a+'">'+a+'</a>'; }
-  });
-
-  // Ajánlatkérés - demo
-  document.getElementById('quoteForm')?.addEventListener('submit', e=>{
-    e.preventDefault();
-    alert('Köszönjük! (Teszt üzemmód)');
-  });
-
-  // Törött képek jelölése (galéria + auto-gallery)
-  function markBrokenImages(scope=document){
-    scope.querySelectorAll('.auto-gallery .tile img, .gallery figure img').forEach(img=>{
-      const mark = ()=>{
-        img.dataset.broken = "1";
-        const tile = img.closest('.tile') || img.parentElement;
-        if(tile) tile.classList.add('empty');
-      };
-      img.addEventListener('error', mark, {once:true});
-      if(img.complete && img.naturalWidth === 0) mark();
+    // e-mail obfuszkáció
+    document.querySelectorAll('.email').forEach(el=>{
+      const u=el.getAttribute('data-u'), d=el.getAttribute('data-d');
+      if(u && d){ const a=u+"@"+d; el.innerHTML = '<a href="mailto:'+a+'">'+a+'</a>'; }
     });
-  }
 
-  document.addEventListener('DOMContentLoaded', ()=>{
-    markBrokenImages(document);
-    /* ha nálad van setupReveal(), az maradhat; nem kell változtatni */
-    typeof setupReveal === 'function' && setupReveal();
-  });
+    // form demo
+    document.getElementById('quoteForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      alert('Köszönjük! (Teszt üzemmód)');
+    });
 
-  // Scroll reveal – stabil (első ellenőrzés, resize + fallback)
-  function setupReveal(){
-    const els = document.querySelectorAll('.reveal-on-scroll');
-    if(els.length===0){ return; }
-
-    const revealNow = el => el.classList.add('in');
-
-    if('IntersectionObserver' in window){
-      const io = new IntersectionObserver(entries=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){ revealNow(e.target); io.unobserve(e.target); }
-        });
-      }, {threshold:0.12, rootMargin:'0px 0px -5% 0px'});
-
-      els.forEach(el=>io.observe(el));
-
-      // első ellenőrzés: ami már viewportban van, azonnal jelenjen meg
-      requestAnimationFrame(()=>{
-        els.forEach(el=>{
-          const r = el.getBoundingClientRect();
-          if(r.top < window.innerHeight*0.88 && r.bottom > 0){ revealNow(el); }
-        });
+    // törött képek – jelöld a tile-t 'empty'-re (kulturált placeholder)
+    function markBrokenImages(scope=document){
+      scope.querySelectorAll('.auto-gallery .tile img').forEach(img=>{
+        const mark=()=>{ const t=img.closest('.tile'); if(t) t.classList.add('empty'); };
+        img.addEventListener('error', mark, {once:true});
+        if(img.complete && img.naturalWidth===0) mark();
       });
+    }
 
-      // biztonsági fallback: scroll/resize esetén is ellenőrzés
-      ['scroll','resize'].forEach(ev=>{
-        window.addEventListener(ev, ()=>{
+    // scroll reveal – stabil + első ellenőrzés + fallback
+    function setupReveal(){
+      const els = document.querySelectorAll('.reveal-on-scroll');
+      if(els.length===0) return;
+
+      const reveal = el => el.classList.add('in');
+
+      if('IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(e=>{
+            if(e.isIntersecting){ reveal(e.target); io.unobserve(e.target); }
+          });
+        }, {threshold:0.12, rootMargin:'0px 0px -5% 0px'});
+
+        els.forEach(el=>io.observe(el));
+
+        requestAnimationFrame(()=>{
+          els.forEach(el=>{
+            const r=el.getBoundingClientRect();
+            if(r.top<window.innerHeight*0.88 && r.bottom>0) reveal(el);
+          });
+        });
+
+        const check=()=>{
           els.forEach(el=>{
             if(!el.classList.contains('in')){
-              const r = el.getBoundingClientRect();
-              if(r.top < window.innerHeight*0.88 && r.bottom > 0){ revealNow(el); }
+              const r=el.getBoundingClientRect();
+              if(r.top<window.innerHeight*0.88 && r.bottom>0) reveal(el);
             }
           });
-        }, {passive:true});
-      });
-    } else {
-      // Fallback régi böngészőkre
-      els.forEach(revealNow);
+        };
+        window.addEventListener('scroll', check, {passive:true});
+        window.addEventListener('resize', check);
+      }else{
+        els.forEach(reveal);
+      }
     }
-  }
 
-  document.addEventListener('DOMContentLoaded', ()=>{
-    markBrokenImages(document);
-    setupReveal();
-  });
-</script>
-
+    document.addEventListener('DOMContentLoaded', ()=>{
+      markBrokenImages();
+      setupReveal();
+    });
+  </script>
 </body>
 </html>
-
-
-
-
