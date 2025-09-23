@@ -189,12 +189,22 @@
 
   // Törött képek jelölése (galéria + auto-gallery)
   function markBrokenImages(scope=document){
-    scope.querySelectorAll('img').forEach(img=>{
-      const mark = ()=>{ img.dataset.broken = "1"; };
+    scope.querySelectorAll('.auto-gallery .tile img, .gallery figure img').forEach(img=>{
+      const mark = ()=>{
+        img.dataset.broken = "1";
+        const tile = img.closest('.tile') || img.parentElement;
+        if(tile) tile.classList.add('empty');
+      };
       img.addEventListener('error', mark, {once:true});
       if(img.complete && img.naturalWidth === 0) mark();
     });
   }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    markBrokenImages(document);
+    /* ha nálad van setupReveal(), az maradhat; nem kell változtatni */
+    typeof setupReveal === 'function' && setupReveal();
+  });
 
   // Scroll reveal – stabil (első ellenőrzés, resize + fallback)
   function setupReveal(){
@@ -245,6 +255,7 @@
 
 </body>
 </html>
+
 
 
 
