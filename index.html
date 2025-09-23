@@ -2,253 +2,287 @@
 <html lang="hu">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Winner Hungária Kft – Frigo Transport & Logistics</title>
-  <link rel="preload" as="image" href="media/hero-1.jpg">
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Winner Hungária Kft – FRIGO TRANSPORT & LOGISTICS</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- ===== Header / Nav ===== -->
-  <header class="site-header">
-    <div class="container nav">
-      <img class="brand" src="media/logo.png" alt="Winner Hungária Kft" />
-      <nav class="menu">
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container row">
+      <div class="brand">
+        <img src="images/logo.png" alt="Winner Hungária Kft logó" />
+      </div>
+      <nav class="navlinks">
         <a href="#services">Szolgáltatások</a>
         <a href="#team">Munkatársaink</a>
         <a href="#gallery">Galéria</a>
         <a href="#contact">Kapcsolat</a>
-        <a class="btn primary" href="#contact">Ajánlatkérés</a>
+        <a class="btn btn-accent" href="#quote">Ajánlatkérés</a>
       </nav>
     </div>
-
-    <!-- ===== Hero (visszaállítva az alap-kinézetre) ===== -->
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="container hero-content">
-        <h1 class="xl reveal-on-scroll">Mozgásban a bizalom, úton a minőség.</h1>
-        <p class="lead reveal-on-scroll">FRIGO TRANSPORT &amp; LOGISTICS • Európa-szerte</p>
-        <div class="cta reveal-on-scroll">
-          <a class="btn primary" href="#contact">Kérj ajánlatot</a>
-          <a class="btn" href="#team">Csapatunk</a>
-        </div>
-      </div>
-    </section>
   </header>
 
-  <!-- ===== Szolgáltatások ===== -->
+  <!-- HERO -->
+  <section class="hero">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="container">
+      <h1>Mozgásban a bizalom, úton a minőség.</h1>
+      <p class="lead">FRIGO TRANSPORT &amp; LOGISTICS • Európa-szerte</p>
+      <div class="cta">
+        <a href="#quote" class="btn btn-accent">Kérj ajánlatot</a>
+        <a href="#team" class="btn btn-ghost">Csapatunk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
   <section id="services" class="section">
     <div class="container">
-      <h2 class="title">Szolgáltatásaink</h2>
-
-      <div class="cards">
-        <article class="service-card reveal-on-scroll" data-service="Hűtős nemzetközi">
-          <div class="inner" aria-live="polite">
-            <div class="front">
-              <h3>Hűtős nemzetközi</h3>
-              <p>Hőfokkontroll, folyamatos monitoring, megbízható határidő.</p>
-            </div>
-            <div class="back">
-              <h3>Hűtős nemzetközi</h3>
-              <ul>
-                <li>24/7 diszpécser • temp. log</li>
-                <li>EU relációk • gyors kapacitás</li>
-                <li>POD, KPI riport</li>
-              </ul>
-              <button class="more" type="button" aria-expanded="false">Több infó <span class="chev">▾</span></button>
-            </div>
+      <h2 class="reveal">Szolgáltatásaink</h2>
+      <div class="services-grid">
+        <article class="service reveal">
+          <div class="inner">
+            <h3>Hűtős nemzetközi</h3>
+            <ul>
+              <li>Hőfokkontroll, folyamatos monitoring</li>
+              <li>EU-relációk, megbízható határidők</li>
+              <li>Gyűjtő és teljes rakomány</li>
+            </ul>
           </div>
-          <div class="inline-panel" hidden>
-            <p>Speciális hőmérséklet-igényekhez kalibrált járműpark, digitális nyomon követés, ellenőrzött rakodás.</p>
-            <a class="link-cta" href="#contact" data-prefill="Hűtős nemzetközi">Ajánlatkérés ehhez a szolgáltatáshoz</a>
+          <div class="more">
+            <span class="badge">hűtős</span>
+            <button class="toggle" type="button" aria-expanded="false">Több infó <span class="dot"></span></button>
           </div>
+          <div class="expand"><div class="pad">
+            Speciális igényekre felkészült flotta, pontos hőmérséklet-naplózás és POD.
+          </div></div>
+          <div class="stripe"></div>
         </article>
 
-        <article class="service-card reveal-on-scroll" data-service="Belföldi logisztika">
+        <article class="service reveal">
           <div class="inner">
-            <div class="front">
-              <h3>Belföldi logisztika</h3>
-              <p>Gyors reagálás, rugalmas kapacitás, pontos kézbesítés.</p>
-            </div>
-            <div class="back">
-              <h3>Belföldi logisztika</h3>
-              <ul>
-                <li>Napi gyűjtő • same-day opció</li>
-                <li>Országos lefedettség</li>
-                <li>POD visszaigazolás</li>
-              </ul>
-              <button class="more" type="button" aria-expanded="false">Több infó <span class="chev">▾</span></button>
-            </div>
+            <h3>Belföldi logisztika</h3>
+            <ul>
+              <li>Napi gyűjtő • same-day opció</li>
+              <li>Országos lefedettség</li>
+              <li>POD visszaigazolás</li>
+            </ul>
           </div>
-          <div class="inline-panel" hidden>
-            <p>Országos hálózat, optimalizált útvonaltervezés és valós idejű státuszjelentés.</p>
-            <a class="link-cta" href="#contact" data-prefill="Belföldi logisztika">Ajánlatkérés ehhez a szolgáltatáshoz</a>
+          <div class="more">
+            <span class="badge">belföld</span>
+            <button class="toggle" type="button" aria-expanded="false">Több infó <span class="dot"></span></button>
           </div>
+          <div class="expand"><div class="pad">
+            Gyors reagálás, rugalmas kapacitás, precíz kézbesítés – országosan.
+          </div></div>
+          <div class="stripe"></div>
         </article>
 
-        <article class="service-card reveal-on-scroll" data-service="Speciális megoldások">
+        <article class="service reveal">
           <div class="inner">
-            <div class="front">
-              <h3>Speciális megoldások</h3>
-              <p>Érzékeny áru, multi-drop, egyedi rakodási igények.</p>
-            </div>
-            <div class="back">
-              <h3>Speciális megoldások</h3>
-              <ul>
-                <li>Ütemezett idősávok</li>
-                <li>ADR-kompatibilitás</li>
-                <li>Hosszú távú SLA</li>
-              </ul>
-              <button class="more" type="button" aria-expanded="false">Több infó <span class="chev">▾</span></button>
-            </div>
+            <h3>Speciális megoldások</h3>
+            <ul>
+              <li>Érzékeny áru kezelése</li>
+              <li>Multi-drop, egyedi rakodás</li>
+              <li>Ütemezett fuvarok</li>
+            </ul>
           </div>
-          <div class="inline-panel" hidden>
-            <p>Egyedi projektlogisztika, több ponton rakodás, dedikált jármű és sofőr.</p>
-            <a class="link-cta" href="#contact" data-prefill="Speciális megoldások">Ajánlatkérés ehhez a szolgáltatáshoz</a>
+          <div class="more">
+            <span class="badge">egyedi</span>
+            <button class="toggle" type="button" aria-expanded="false">Több infó <span class="dot"></span></button>
           </div>
+          <div class="expand"><div class="pad">
+            Egyedi igényekhez igazított folyamatok és dedikált ügyfélkapcsolat.
+          </div></div>
+          <div class="stripe"></div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== Csapatunk (kompakt flip-kártyák) ===== -->
+  <!-- TEAM -->
   <section id="team" class="section">
     <div class="container">
-      <h2 class="title">Munkatársaink</h2>
-
-      <div class="cards team">
-        <article class="team-card reveal-on-scroll">
-          <div class="inner">
+      <h2 class="reveal">Munkatársaink</h2>
+      <div class="team-grid">
+        <div class="team reveal">
+          <div class="flip">
             <div class="side front">
-              <h3>Lipták Andrea</h3><p>Adminisztrátor</p>
+              <div class="name">Lipták Andrea</div>
+              <div class="role">Adminisztrátor</div>
             </div>
             <div class="side back">
-              <p><strong>E-mail:</strong> <a href="mailto:office@winnerhungaria.hu">office@winnerhungaria.hu</a></p>
-              <p><strong>Telefon:</strong> <a href="tel:+36204034664">+36 20/4034664</a></p>
+              <div>E-mail: <a data-mail="office@winnerhungaria.hu"></a></div>
+              <div class="meta">Telefon: <a href="tel:+36204034664">+36 20 403 4664</a></div>
             </div>
           </div>
-        </article>
+        </div>
 
-        <article class="team-card reveal-on-scroll">
-          <div class="inner">
+        <div class="team reveal">
+          <div class="flip">
             <div class="side front">
-              <h3>Baranyai Balázs</h3><p>Nemzetközi &amp; Belföldi Fuvarszervező</p>
+              <div class="name">Baranyai Balázs</div>
+              <div class="role">Nemzetközi &amp; Belföldi Fuvarszervező</div>
             </div>
             <div class="side back">
-              <p><strong>E-mail:</strong> <a href="mailto:fuvarszervezes@winnerhungaria.hu">fuvarszervezes@winnerhungaria.hu</a></p>
-              <p><strong>Telefon:</strong> <a href="tel:+36708828480">+36 70/8828480</a></p>
+              <div>E-mail: <a data-mail="fuvarszervezes@winnerhungaria.hu"></a></div>
+              <div class="meta">Telefon: <a href="tel:+36708828480">+36 70 882 8480</a></div>
             </div>
           </div>
-        </article>
+        </div>
 
-        <article class="team-card reveal-on-scroll">
-          <div class="inner">
+        <div class="team reveal">
+          <div class="flip">
             <div class="side front">
-              <h3>Nagy Márió</h3><p>Flotta menedzser</p>
+              <div class="name">Eperjesiné Csala Zsuzsanna</div>
+              <div class="role">Adminisztrátor</div>
             </div>
             <div class="side back">
-              <p><strong>E-mail:</strong> <a href="mailto:irodahr@winnerhungaria.hu">irodahr@winnerhungaria.hu</a></p>
-              <p><strong>Telefon:</strong> <a href="tel:+36706074948">+36 70/6074948</a></p>
+              <div>E-mail: <a data-mail="officehr@winnerhungaria.hu"></a></div>
+              <div class="meta">Telefon: <a href="tel:+36708815952">+36 70 881 5952</a></div>
             </div>
           </div>
-        </article>
+        </div>
 
-        <article class="team-card reveal-on-scroll">
-          <div class="inner">
+        <div class="team reveal">
+          <div class="flip">
             <div class="side front">
-              <h3>Áron Kinsztler</h3><p>Nemzetközi &amp; Belföldi Fuvarszervező</p>
+              <div class="name">Nagy Márió</div>
+              <div class="role">Flotta menedzser</div>
             </div>
             <div class="side back">
-              <p><strong>E-mail:</strong> <a href="mailto:fuvarszervezes@winnerhungaria.hu">fuvarszervezes@winnerhungaria.hu</a></p>
-              <p><strong>Telefon:</strong> <a href="tel:+36704233588">+36 70/4233588</a></p>
+              <div>E-mail: <a data-mail="irodahr@winnerhungaria.hu"></a></div>
+              <div class="meta">Telefon: <a href="tel:+36706074948">+36 70 607 4948</a></div>
             </div>
           </div>
-        </article>
+        </div>
 
-        <article class="team-card reveal-on-scroll">
-          <div class="inner">
+        <div class="team reveal">
+          <div class="flip">
             <div class="side front">
-              <h3>Tóth Andrea</h3><p>Pénzügy</p>
+              <div class="name">Áron Kinsztler</div>
+              <div class="role">Nemzetközi &amp; Belföldi Fuvarszervező</div>
             </div>
             <div class="side back">
-              <p><strong>E-mail:</strong> <a href="mailto:info@winnerhungaria.hu">info@winnerhungaria.hu</a></p>
-              <p><strong>Telefon:</strong> <a href="tel:+36205075020">+36 20/5075020</a></p>
+              <div>E-mail: <a data-mail="fuvarszervezes@winnerhungaria.hu"></a></div>
+              <div class="meta">Telefon: <a href="tel:+36704233588">+36 70 423 3588</a></div>
             </div>
           </div>
-        </article>
+        </div>
 
-        <article class="team-card reveal-on-scroll">
-          <div class="inner">
+        <div class="team reveal">
+          <div class="flip">
             <div class="side front">
-              <h3>Eperjesiné Csala Zsuzsanna</h3><p>Adminisztrátor</p>
+              <div class="name">Tóth Andrea</div>
+              <div class="role">Pénzügy</div>
             </div>
             <div class="side back">
-              <p><strong>E-mail:</strong> <a href="mailto:officehr@winnerhungaria.hu">officehr@winnerhungaria.hu</a></p>
-              <p><strong>Telefon:</strong> <a href="tel:+36708815952">+36 70/8815952</a></p>
+              <div>E-mail: <a data-mail="info@winnerhungaria.hu"></a></div>
+              <div class="meta">Telefon: <a href="tel:+36205075020">+36 20 507 5020</a></div>
             </div>
           </div>
-        </article>
+        </div>
 
-        <article class="team-card reveal-on-scroll">
-          <div class="inner">
+        <div class="team reveal">
+          <div class="flip">
             <div class="side front">
-              <h3>Kordován Attila</h3><p>Szerviz</p>
+              <div class="name">Kordován Attila</div>
+              <div class="role">Szerviz</div>
             </div>
             <div class="side back">
-              <p><strong>E-mail:</strong> <a href="mailto:muhely@winnerhungaria.hu">muhely@winnerhungaria.hu</a></p>
-              <p><strong>Telefon:</strong> <a href="tel:+36708856871">+36 70/8856871</a></p>
+              <div>E-mail: <a data-mail="muhely@winnerhungaria.hu"></a></div>
+              <div class="meta">Telefon: <a href="tel:+36708856871">+36 70 885 6871</a></div>
             </div>
           </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Galéria ===== -->
-  <section id="gallery" class="section">
-    <div class="container">
-      <h2 class="title">Galéria</h2>
-      <div class="auto-gallery reveal-on-scroll" data-speed="20">
-        <div class="track" aria-label="Képgaléria automatikus görgetéssel"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Kapcsolat + Ajánlatkérés ===== -->
-  <section id="contact" class="section">
-    <div class="container two-col">
-      <div class="col reveal-on-scroll">
-        <h2 class="title">Kérj ajánlatot</h2>
-        <form id="quoteForm" class="form">
-          <div class="f2">
-            <input type="text" name="name" placeholder="Név" required>
-            <input type="email" name="email" placeholder="E-mail" required>
-          </div>
-          <input type="tel" name="phone" placeholder="+36 …">
-          <input type="text" name="service" id="serviceField" placeholder="Szolgáltatás (opcionális)">
-          <textarea name="msg" rows="4" placeholder="Rövid leírás…"></textarea>
-          <button class="btn primary" type="submit">Elküldés</button>
-        </form>
-      </div>
-
-      <div class="col reveal-on-scroll">
-        <h2 class="title">Kapcsolat &amp; Székhely</h2>
-        <div class="mapwrap">
-          <iframe title="Winner Hungária székhely" loading="lazy"
-            src="https://www.google.com/maps?q=Winner%20Hung%C3%A1ria%20Kft&output=embed"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
   </section>
 
-  <footer class="site-footer">
+  <!-- GALLERY -->
+  <section id="gallery" class="section">
     <div class="container">
-      <small>© Winner Hungária Kft</small>
+      <h2 class="reveal">Galéria</h2>
+    </div>
+    <div class="container gallery-wrap">
+      <div class="slider reveal">
+        <div class="rail" id="rail">
+          <!-- 1. fél -->
+          <figure class="slide"><img src="images/truck-02.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-03.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-04.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-05.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-06.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-07.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-08.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-09.jpg" alt=""></figure>
+          <!-- 2. fél -->
+          <figure class="slide"><img src="images/truck-10.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-11.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-12.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-13.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-14.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-15.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-16.jpg" alt=""></figure>
+          <figure class="slide"><img src="images/truck-17.jpg" alt=""></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT + QUOTE -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="two">
+        <div class="card reveal pad">
+          <h2>Kapcsolat &amp; Székhely</h2>
+          <p><strong>Winner Hungária Kft.</strong><br>
+          2330 Dunaharaszti, Baktay tér 9.</p>
+          <p>
+            Telefon: <a href="tel:+36204034664">+36 20 403 4664</a><br>
+            E-mail: <a data-mail="info@winnerhungaria.hu"></a>
+          </p>
+          <div class="mapframe">
+            <iframe
+              src="https://www.google.com/maps?q=Dunaharaszti%2C%20Baktay%20t%C3%A9r%209&output=embed"
+              width="100%" height="240" style="border:0;" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+        <div id="quote" class="card reveal pad">
+          <h2>Ajánlatkérés</h2>
+          <form class="form" onsubmit="event.preventDefault(); alert('Köszönjük! Hamarosan jelentkezünk.');">
+            <div class="row">
+              <div><label>Név<input required></label></div>
+              <div><label>E-mail<input type="email" required></label></div>
+            </div>
+            <div class="row">
+              <div><label>Telefon<input type="tel"></label></div>
+              <div><label>Reláció<select><option>Nemzetközi</option><option>Belföldi</option><option>Speciális</option></select></label></div>
+            </div>
+            <div class="row">
+              <div style="grid-column:1/-1"><label>Üzenet<textarea placeholder="Röviden az igényről..."></textarea></label></div>
+            </div>
+            <button class="btn btn-accent" type="submit">Küldés</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <small>© Winner Hungária Kft. • FRIGO TRANSPORT & LOGISTICS</small>
+      <small>Mottó: „Mozgásban a bizalom, úton a minőség.”</small>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
-
