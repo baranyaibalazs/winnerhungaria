@@ -2,14 +2,12 @@
 function setupReveal(){
   const els = document.querySelectorAll('.reveal-on-scroll');
   if(!('IntersectionObserver' in window)){ els.forEach(el=>el.classList.add('in')); return; }
-
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){ e.target.classList.add('in'); }
       else { e.target.classList.remove('in'); }
     });
   }, {threshold:0.15, rootMargin:'0px 0px -5% 0px'});
-
   els.forEach(el=>io.observe(el));
 }
 
@@ -63,7 +61,7 @@ function setupServiceCards(){
   });
 }
 
-/* -------- Auto-scroll galéria: fix magasság, arányos szélesség -------- */
+/* -------- Auto-scroll galéria: DOM-ba illesztés UTÁN mérünk szélességet -------- */
 function buildGallery(){
   const wrap = document.querySelector('.auto-gallery');
   if(!wrap) return;
@@ -76,48 +74,41 @@ function buildGallery(){
   const tryLoad = src => new Promise(res=>{
     const img = new Image();
     img.onload = () => res({ok:true,src,ratio: img.naturalWidth/img.naturalHeight || 1.6});
-    img.onerror = () => res({ok:false,src});
+    img.onerror = () => {
+      console.warn('[Galéria] Nem tölthető be:', base+src);
+      res({ok:false,src});
+    };
     img.src = base + src;
   });
 
   Promise.all(files.map(tryLoad)).then(results=>{
     const ok = results.filter(r=>r.ok);
-    if(ok.length===0) return;
+    if(ok.length===0){
+      console.warn('[Galéria] Nincs használható kép.');
+      return;
+    }
 
+    const tiles = [];
     const addTile = (r) => {
       const fig = document.createElement('figure');
       fig.className = 'tile';
-      const baseH = getComputedStyle(fig).height;
-      const h = parseFloat(baseH) || 180;
-      const w = Math.min(520, Math.max(160, Math.round(h * r.ratio)));
-      fig.style.width = w + 'px';
-
       const img = document.createElement('img');
       img.src = base + r.src;
       img.alt = 'Galéria kép';
       fig.appendChild(img);
-      track.appendChild(fig);
+      track.appendChild(fig);              // << előbb a DOM-ba tesszük
+      const h = fig.getBoundingClientRect().height || 180; // itt már mérhető
+      const w = Math.min(520, Math.max(160, Math.round(h * r.ratio)));
+      fig.style.width = w + 'px';
+      tiles.push(fig);
     };
 
     ok.forEach(addTile);
-    ok.forEach(addTile); // duplikálás a végtelenítéshez
+    ok.forEach(r => addTile(r));           // duplázás a végtelenítéshez
 
     const dur = Math.max(10, Number(wrap.dataset.speed) || 20);
     wrap.style.setProperty('--dur', dur + 's');
     wrap.classList.add('run');
-  });
-}
-
-/* -------- Prefill az ajánlatkérés űrlaphoz -------- */
-function prefillFromCards(){
-  document.querySelectorAll('.service-card').forEach(card=>{
-    card.addEventListener('click', (e)=>{
-      const a = e.target.closest('a.link-cta');
-      if(!a) return;
-      const service = a.dataset.prefill || card.dataset.service || '';
-      const field = document.getElementById('serviceField');
-      if(field) field.value = service;
-    });
   });
 }
 
@@ -126,5 +117,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
   setupReveal();
   setupServiceCards();
   buildGallery();
-  prefillFromCards();
 });
