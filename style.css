@@ -27,32 +27,32 @@ body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,
 .menu{margin-left:auto;display:flex;gap:18px;align-items:center}
 .menu a{color:var(--ink);text-decoration:none;font-weight:600}
 
-/* hero */
-.hero{position:relative;overflow:hidden;padding:64px 0 56px;color:#fff}
-.hero-bg{position:absolute;inset:0;background:url('media/hero-1.jpg') center/cover no-repeat;z-index:-2}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.35));z-index:-1}
+/* HERO – visszaállított alap stílus */
+.hero{position:relative;overflow:hidden;padding:72px 0 60px;color:#fff}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('media/hero-1.jpg') center/cover no-repeat;
+  filter:brightness(.55); z-index:-1;
+}
+.hero-content{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:46vh}
 .cta{display:flex;gap:14px}
 
-/* cards (services & team) */
+/* CARDS – szolgáltatások */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.service-card,.team-card{position:relative}
-.service-card .inner,
-.team-card .inner{position:relative;perspective:1000px;will-change:transform}
-
-.service-card .front,.service-card .back,
-.team-card .front,.team-card .back{
+.service-card{position:relative}
+.service-card .inner{position:relative;perspective:1000px;will-change:transform}
+.service-card .front,.service-card .back{
   border:1px solid var(--ring);border-radius:16px;background:var(--card);
   padding:20px;min-height:180px;box-shadow:var(--shadow);
   backface-visibility:hidden;transform-style:preserve-3d;transition:transform .32s ease-in-out;
 }
-.service-card .back,.team-card .back{position:absolute;inset:0;transform:rotateY(180deg)}
-.service-card:hover .front,.service-card:focus-within .front,
-.team-card:hover .front,.team-card:focus-within .front{transform:rotateY(180deg)}
-.service-card:hover .back,.service-card:focus-within .back,
-.team-card:hover .back,.team-card:focus-within .back{transform:rotateY(360deg)}
-
-.service-card h3,.team-card h3{margin:0 0 6px}
-.service-card p,.team-card p{margin:0;color:var(--muted)}
+.service-card .back{position:absolute;inset:0;transform:rotateY(180deg)}
+.service-card:hover .front,.service-card:focus-within .front{transform:rotateY(180deg)}
+.service-card:hover .back,.service-card:focus-within .back{transform:rotateY(360deg)}
+.service-card h3{margin:0 0 6px}
+.service-card p{margin:0;color:var(--muted)}
+.service-card ul{margin:0 0 10px;padding-left:18px}
+.service-card li{margin:.2em 0}
 .more{
   display:flex;justify-content:space-between;align-items:center;width:100%;
   background:transparent;border:0;border-top:1px solid var(--ring);padding:10px 0 0;
@@ -66,7 +66,23 @@ body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,
 }
 .inline-panel[hidden]{display:none}
 
-/* auto-gallery */
+/* TEAM – kompakt flip kártyák */
+.team .team-card{position:relative}
+.team .inner{position:relative;perspective:1000px}
+.team .front,.team .back{
+  border:1px solid var(--ring);border-radius:14px;background:var(--card);
+  padding:16px;min-height:140px;box-shadow:var(--shadow);
+  backface-visibility:hidden;transform-style:preserve-3d;transition:transform .28s ease-in-out;
+}
+.team .back{position:absolute;inset:0;transform:rotateY(180deg)}
+.team .team-card:hover .front,.team .team-card:focus-within .front{transform:rotateY(180deg)}
+.team .team-card:hover .back,.team .team-card:focus-within .back{transform:rotateY(360deg)}
+.team h3{margin:0 0 4px;font-size:18px}
+.team p{margin:0;color:var(--muted);font-size:14px}
+.team .back p{margin:.2em 0;font-size:14px}
+.team .back a{color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--brand)}
+
+/* GALÉRIA – fix magasság + arányos szélesség */
 .auto-gallery{
   overflow:hidden;border-radius:16px;border:1px solid var(--ring);
   background:linear-gradient(180deg,#fff,#fbfdff);padding:10px;box-shadow:var(--shadow)
@@ -83,7 +99,7 @@ body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,
 .tile:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(17,24,39,.18)}
 .tile img{display:block;height:100%;width:auto;object-fit:contain}
 
-/* contact */
+/* KAPCSOLAT */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .mapwrap{border-radius:16px;overflow:hidden;border:1px solid var(--ring);box-shadow:var(--shadow);background:#fff}
 .mapwrap iframe{display:block;width:100%;height:360px;border:0}
@@ -91,7 +107,7 @@ body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,
 .f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--ring);font:inherit}
 
-/* sheet */
+/* Bottom sheet (mobil) – ha később kell a szolgáltatás „Több infó”-hoz */
 .sheet[hidden]{display:none}
 .sheet{position:fixed;inset:0;z-index:80}
 .sheet__backdrop{position:absolute;inset:0;background:rgba(0,0,0,.35);opacity:0;transition:opacity .2s}
@@ -103,25 +119,30 @@ input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid 
 .sheet.open .sheet__panel{transform:translateY(0)}
 .sheet__close{position:absolute;right:10px;top:10px;border:0;background:#f1f4f9;border-radius:10px;padding:6px 10px;cursor:pointer}
 
-/* reveal */
+/* Reveal on scroll */
 .reveal-on-scroll{opacity:0;transform:translateY(16px);transition:opacity .35s ease, transform .35s ease}
 .reveal-on-scroll.in{opacity:1;transform:none}
 
-/* footer */
+/* Footer */
 .site-footer{padding:30px 0}
 .site-footer small{color:var(--muted)}
 
-/* responsive */
+/* Responsive */
+@media (min-width: 1280px){
+  .cards{grid-template-columns:repeat(4,1fr)} /* több kártya sorban ha van hely */
+}
 @media (max-width: 1000px){
   .cards{grid-template-columns:1fr 1fr}
 }
 @media (max-width: 720px){
   .xl{font-size:38px}
+  .hero{padding:56px 0 44px}
+  .hero-content{min-height:38vh}
   .cards{grid-template-columns:1fr}
   .two-col{grid-template-columns:1fr}
   .f2{grid-template-columns:1fr}
   .tile{height:160px}
 }
 
-/* gallery animáció */
+/* Galéria animáció */
 @keyframes autoScroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
