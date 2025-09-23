@@ -209,49 +209,52 @@
     }
 
     // scroll reveal – stabil + első ellenőrzés + fallback
-    function setupReveal(){
-      const els = document.querySelectorAll('.reveal-on-scroll');
-      if(els.length===0) return;
+ function setupReveal(){
+    const els = document.querySelectorAll('.reveal-on-scroll');
+    if(!els.length) return;
 
-      const reveal = el => el.classList.add('in');
-
-      if('IntersectionObserver' in window){
-        const io = new IntersectionObserver((entries)=>{
-          entries.forEach(e=>{
-            if(e.isIntersecting){ reveal(e.target); io.unobserve(e.target); }
-          });
-        }, {threshold:0.12, rootMargin:'0px 0px -5% 0px'});
-
-        els.forEach(el=>io.observe(el));
-
-        requestAnimationFrame(()=>{
-          els.forEach(el=>{
-            const r=el.getBoundingClientRect();
-            if(r.top<window.innerHeight*0.88 && r.bottom>0) reveal(el);
-          });
+    if('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('in');
+          } else {
+            e.target.classList.remove('in');  // kilépéskor vissza
+          }
         });
+      }, {threshold:0.15, rootMargin:'0px 0px -5% 0px'});
 
-        const check=()=>{
-          els.forEach(el=>{
-            if(!el.classList.contains('in')){
-              const r=el.getBoundingClientRect();
-              if(r.top<window.innerHeight*0.88 && r.bottom>0) reveal(el);
-            }
-          });
-        };
-        window.addEventListener('scroll', check, {passive:true});
-        window.addEventListener('resize', check);
-      }else{
-        els.forEach(reveal);
-      }
+      els.forEach(el=>io.observe(el));
+
+      // első ellenőrzés – ami már a viewportban van, legyen aktív
+      requestAnimationFrame(()=>{
+        els.forEach(el=>{
+          const r = el.getBoundingClientRect();
+          if(r.top < innerHeight*0.85 && r.bottom > 0) el.classList.add('in');
+        });
+      });
+    } else {
+      // nagyon régi böngészők
+      els.forEach(el=>el.classList.add('in'));
     }
+  }
 
-    document.addEventListener('DOMContentLoaded', ()=>{
-      markBrokenImages();
-      setupReveal();
+  // törött képek jelölése változatlanul mehet
+  function markBrokenImages(scope=document){
+    scope.querySelectorAll('.auto-gallery .tile img').forEach(img=>{
+      const mark=()=>{ const t=img.closest('.tile'); if(t) t.classList.add('empty'); };
+      img.addEventListener('error', mark, {once:true});
+      if(img.complete && img.naturalWidth===0) mark();
     });
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    markBrokenImages();
+    setupReveal();
+  });
   </script>
 </body>
 </html>
+
 
 
