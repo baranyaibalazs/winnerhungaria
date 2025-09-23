@@ -109,32 +109,60 @@ body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,
 .inline-panel[hidden]{display:none}
 
 /* TEAM – kompakt flip kártyák */
-.team .team-card{position:relative}
-.team .inner{position:relative;perspective:1000px}
-.team .front,
-.team .back {
-  min-height: 110px;        /* kisebb magasság */
-  padding: 14px;
+/* --- TEAM CARDS: szabályos 3D flip, nem tükröződik, nem folyik szét --- */
+.team-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
 }
-.team h3 {
-  font-size: 16px;
-  margin-bottom: 4px;
+
+.team-card{
+  perspective: 1000px;
 }
-.team p {
-  font-size: 13px;
-  margin: 0;
+
+.team-card .flip{
+  position: relative;
+  width: 100%;
+  height: 180px;                 /* kisebb csempe, kérted */
+  border-radius: 14px;
+  border: 1px solid var(--ring);
+  background: #fff;
+  box-shadow: var(--shadow);
+  transition: transform .5s ease;
+  transform-style: preserve-3d;  /* 3D stack */
+  overflow: hidden;
 }
-.team .back p {
-  font-size: 13px;
-  margin: 2px 0;
+
+.team-card .side{
+  position: absolute;            /* mindkét oldal ugyanott */
+  inset: 0;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  backface-visibility: hidden;   /* NEM látszódik tükrözve */
+  -webkit-backface-visibility: hidden;
 }
-.team .back{position:absolute;inset:0;transform:rotateY(180deg)}
-.team .team-card:hover .front,.team .team-card:focus-within .front{transform:rotateY(180deg)}
-.team .team-card:hover .back,.team .team-card:focus-within .back{transform:rotateY(360deg)}
-.team h3{margin:0 0 4px;font-size:18px}
-.team p{margin:0;color:var(--muted);font-size:14px}
-.team .back p{margin:.2em 0;font-size:14px}
-.team .back a{color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--brand)}
+
+.team-card .front{
+  transform: rotateY(0);
+}
+
+.team-card .back{
+  transform: rotateY(180deg);    /* hátlap előre „fordítva” */
+}
+
+.team-card:hover .flip,
+.team-card:focus-within .flip{
+  transform: rotateY(180deg);    /* hoverre átfordul */
+}
+
+/* tipográfia */
+.team-card .name{ font-weight: 700; margin-bottom: 6px; }
+.team-card .role{ color: #63728a; font-size: .95rem; margin-bottom: 8px; }
+.team-card .meta{ margin-top: 8px; font-size: .95rem; }
+.team-card .meta a{ text-decoration: underline dotted; }
+
 
 /* GALÉRIA – fix magasság + arányos szélesség */
 .auto-gallery{
@@ -258,5 +286,6 @@ input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid 
   .tile:hover img,
   .tile:focus-within img{ transform: scale(1.12); }
 }
+
 
 
