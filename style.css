@@ -1,285 +1,113 @@
 :root{
-  --bg:#e9eef5;
+  --accent:#8DC021;
+  --accent-600:#74a31b;
+  --ink:#0f172a;
+  --muted:#6b7280;
+  --bg:#e9eef6;
   --card:#ffffff;
-  --ink:#0b1421;
-  --muted:#5c6674;
-  --brand:#9CC32F;
-  --brand-ink:#2e3b22;
-  --ring:#dfe6f2;
-  --shadow:0 8px 24px rgba(17,24,39,.12);
+  --ring:#e5ecf5;
+  --shadow:0 8px 28px rgba(15,23,42,.08),0 2px 8px rgba(15,23,42,.06);
+  --max:1200px;
+  --pad:clamp(16px,2.5vw,24px);
+  --radius:18px;
+  --radius-sm:14px;
+  --radius-lg:28px;
+  --a1:320ms cubic-bezier(.2,.6,.2,1);
+  --a2:500ms cubic-bezier(.2,.6,.2,1);
 }
-
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.section{padding:64px 0}
-.title{font-size:32px;margin:0 0 20px}
-.xl{font-size:52px;line-height:1.1;margin:0 0 6px}
-.lead{color:var(--muted);margin:0 0 18px}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:100px;border:1px solid var(--ring);background:#fff;color:var(--ink);text-decoration:none;font-weight:600}
-.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
-.link-cta{color:var(--brand-ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--brand);padding-bottom:2px}
-
-/* header/nav */
-.site-header .nav{display:flex;align-items:center;gap:18px;padding:10px 0}
-.brand{height:38px}
-.menu{margin-left:auto;display:flex;gap:18px;align-items:center}
-.menu a{color:var(--ink);text-decoration:none;font-weight:600}
-
-/* HERO – alapverzió */
-.hero {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 70vh;
-  text-align: center;
-  color: #fff;
-  overflow: hidden;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: url('media/hero-1.jpg') center/cover no-repeat;
-  z-index: -2;
-}
-.hero::after{
-  content:"";
-  position:absolute; left:0; right:0; bottom:-1px; height:20vh;
-  background: linear-gradient(to bottom,
-              rgba(15,23,42,0) 0%,
-              rgba(248,250,252,0.25) 55%,
-              rgba(248,250,252,0.85) 85%,
-              #f8fafc 100%);
-  pointer-events:none;
+body{
+  margin:0; font:16px/1.5 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  color:var(--ink); background:var(--bg);
 }
 
-.hero-content {
-  max-width: 800px;
-  padding: 20px;
-}
-.hero .xl {
-  font-size: 56px;
-  margin-bottom: 16px;
-}
-.hero .lead {
-  font-size: 20px;
-  margin-bottom: 24px;
-  color: #e5e5e5;
-}
-/* finom glow */
-.hero h1 { text-shadow: 0 0 6px rgba(0,0,0,.6); }
-.hero p  { text-shadow: 0 0 8px rgba(0,0,0,.7); }
+/* layout */
+.container{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
+.section{padding:clamp(40px,6vw,80px) 0}
+h1,h2,h3{margin:0 0 16px}
+h1{font-weight:800;font-size:clamp(28px,5.3vw,72px);line-height:1.02;letter-spacing:-.02em}
+h2{font-weight:800;font-size:clamp(22px,3.2vw,44px);letter-spacing:-.01em}
+.lead{font-size:clamp(18px,2.2vw,22px);color:#dce4ee}
+.pad{padding:22px}
+.card{background:var(--card);border:1px solid var(--ring);border-radius:var(--radius);box-shadow:var(--shadow)}
+.badge{display:inline-block;padding:.28rem .6rem;border-radius:999px;font-size:.82rem;border:1px solid rgba(141,192,33,.35);color:#406312;background:rgba(141,192,33,.12)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.show{opacity:1;transform:none}
 
-/* CARDS – szolgáltatások */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.service-card{position:relative}
-.service-card .inner{position:relative;perspective:1000px;will-change:transform}
-.service-card .front,.service-card .back{
-  border:1px solid var(--ring);border-radius:16px;background:var(--card);
-  padding:20px;min-height:180px;box-shadow:var(--shadow);
-  backface-visibility:hidden;transform-style:preserve-3d;transition:transform .32s ease-in-out;
-}
-.service-card .back{position:absolute;inset:0;transform:rotateY(180deg)}
-.service-card:hover .front,.service-card:focus-within .front{transform:rotateY(180deg)}
-.service-card:hover .back,.service-card:focus-within .back{transform:rotateY(360deg)}
-.service-card h3{margin:0 0 6px}
-.service-card p{margin:0;color:var(--muted)}
-.service-card ul{margin:0 0 10px;padding-left:18px}
-.service-card li{margin:.2em 0}
-.more{
-  display:flex;justify-content:space-between;align-items:center;width:100%;
-  background:transparent;border:0;border-top:1px solid var(--ring);padding:10px 0 0;
-  font-weight:700;color:var(--brand-ink);cursor:pointer;
-}
-.more .chev{transition:transform .18s}
-.inline-panel{
-  border:1px solid var(--brand);border-top:0;border-radius:0 0 16px 16px;
-  background:#f9fff0;padding:14px 16px;margin-top:-10px;
-  box-shadow:0 8px 16px rgba(88,119,22,.12);
-}
-.inline-panel[hidden]{display:none}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(10px);background:rgba(255,255,255,.7);border-bottom:1px solid rgba(15,23,42,.06)}
+.nav .row{display:flex;align-items:center;gap:20px;height:72px}
+.brand{display:flex;align-items:center;gap:14px;font-weight:800}
+.brand img{height:40px;width:auto}
+.navlinks{margin-left:auto;display:flex;gap:20px;align-items:center}
+.navlinks a{color:var(--ink);text-decoration:none;font-weight:600;opacity:.85}
+.navlinks a:hover{opacity:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:.85rem 1.2rem;border-radius:999px;font-weight:700;text-decoration:none;transition:transform var(--a1),box-shadow var(--a1);box-shadow:0 6px 20px rgba(141,192,33,.22)}
+.btn-accent{background:var(--accent);color:#1b1b1b}
+.btn-accent:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(141,192,33,.28)}
+.btn-ghost{background:#fff;color:#111;box-shadow:0 10px 30px rgba(0,0,0,.12)}
 
-/* TEAM – kompakt flip kártyák */
-/* --- TEAM CARDS: szabályos 3D flip, nem tükröződik, nem folyik szét --- */
-.team-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-}
+/* hero */
+.hero{position:relative;isolation:isolate;overflow:clip;min-height:clamp(520px,76vh,840px);display:grid;align-items:center}
+.hero .bg{position:absolute;inset:0;z-index:-2;background:url("images/hero-1.jpg") center/cover no-repeat fixed;filter:saturate(90%) contrast(105%);transform:scale(1.02)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.58) 0%,rgba(0,0,0,.45) 40%,rgba(0,0,0,.35) 65%,rgba(0,0,0,.25) 80%,rgba(0,0,0,.15) 88%,rgba(0,0,0,0) 100%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:26vh;z-index:0;background:linear-gradient(to bottom,rgba(15,23,42,0) 0%,rgba(248,250,252,0.20) 55%,rgba(248,250,252,0.70) 85%,#e9eef6 100%)}
+.hero h1{text-shadow:0 0 6px rgba(0,0,0,.55)}
+.hero .lead{text-shadow:0 0 8px rgba(0,0,0,.65)}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
 
-.team-card{
-  perspective: 1000px;
-}
+/* services */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.service{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid var(--ring);background:#fff;box-shadow:var(--shadow);padding:0;transition:transform var(--a1),box-shadow var(--a1)}
+.service:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(15,23,42,.12)}
+.service .stripe{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--accent)}
+.service .inner{position:relative;padding:22px 22px 68px}
+.service h3{margin:0 0 .6rem}
+.service ul{margin:0;padding-left:1.2rem}
+.service li{margin:.35rem 0}
+.service .more{position:absolute;left:16px;right:16px;bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.service .more button{appearance:none;border:0;background:transparent;font-weight:700;color:#192233;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:.6rem .8rem;border-radius:10px;transition:background var(--a1)}
+.service .more button:hover{background:#f3f6fb}
+.service .more .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.service .expand{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.service.open .expand{max-height:180px}
+.service .expand .pad{padding:0 22px 18px 22px;color:var(--muted)}
 
-.team-card .flip{
-  position: relative;
-  width: 100%;
-  height: 180px;                 /* kisebb csempe, kérted */
-  border-radius: 14px;
-  border: 1px solid var(--ring);
-  background: #fff;
-  box-shadow: var(--shadow);
-  transition: transform .5s ease;
-  transform-style: preserve-3d;  /* 3D stack */
-  overflow: hidden;
-}
+/* team */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.team{perspective:1000px}
+.team .flip{position:relative;height:180px;border:1px solid var(--ring);border-radius:var(--radius-sm);background:#fff;box-shadow:var(--shadow);transform-style:preserve-3d;transition:transform var(--a2)}
+.team .side{position:absolute;inset:0;padding:16px;display:flex;flex-direction:column;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.team .front .name{font-weight:800;margin-bottom:4px}
+.team .front .role{color:var(--muted)}
+.team .back{transform:rotateY(180deg)}
+.team:hover .flip,.team:focus-within .flip{transform:rotateY(180deg)}
+.team .meta{margin-top:8px;font-size:.95rem}
+.team .meta a{color:#0a1c3d;text-decoration:underline dotted}
 
-.team-card .side{
-  position: absolute;            /* mindkét oldal ugyanott */
-  inset: 0;
-  padding: 18px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  backface-visibility: hidden;   /* NEM látszódik tükrözve */
-  -webkit-backface-visibility: hidden;
-}
+/* gallery */
+.gallery-wrap{overflow:hidden}
+.slider{position:relative;background:#fff;border:1px solid var(--ring);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 0}
+.rail{display:flex;gap:18px;padding-inline:28px;will-change:transform;animation:slide 40s linear infinite}
+.rail:hover{animation-play-state:paused}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.slide{flex:0 0 520px;height:280px;border-radius:20px;overflow:hidden;position:relative;box-shadow:0 10px 26px rgba(15,23,42,.10);transition:transform var(--a1),box-shadow var(--a1);background:#f2f5fa}
+.slide:hover{transform:translateY(-6px);box-shadow:0 18px 42px rgba(15,23,42,.18)}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 500ms ease,filter 500ms ease}
+.slide:hover img{transform:scale(1.08);filter:contrast(105%) saturate(105%)}
 
-.team-card .front{
-  transform: rotateY(0);
-}
+/* contact + quote */
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .row + .row{margin-top:12px}
+.form input,.form textarea,.form select{width:100%;padding:14px 14px;border-radius:12px;border:1px solid var(--ring);background:#fff;font:inherit}
+.form textarea{min-height:120px;resize:vertical}
+.form button{margin-top:12px}
+.mapframe{border-radius:14px;overflow:hidden;border:1px solid var(--ring)}
 
-.team-card .back{
-  transform: rotateY(180deg);    /* hátlap előre „fordítva” */
-}
-
-.team-card:hover .flip,
-.team-card:focus-within .flip{
-  transform: rotateY(180deg);    /* hoverre átfordul */
-}
-
-/* tipográfia */
-.team-card .name{ font-weight: 700; margin-bottom: 6px; }
-.team-card .role{ color: #63728a; font-size: .95rem; margin-bottom: 8px; }
-.team-card .meta{ margin-top: 8px; font-size: .95rem; }
-.team-card .meta a{ text-decoration: underline dotted; }
-
-
-/* GALÉRIA – fix magasság + arányos szélesség */
-.auto-gallery{
-  overflow:hidden;border-radius:16px;border:1px solid var(--ring);
-  background:linear-gradient(180deg,#fff,#fbfdff);padding:10px;box-shadow:var(--shadow)
-}
-.auto-gallery .track{display:flex;gap:10px;align-items:center;will-change:transform}
-.auto-gallery.run .track{animation:autoScroll var(--dur,20s) linear infinite}
-.auto-gallery:hover .track{animation-play-state:paused}
-.tile{
-  position:relative;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
-  height:180px;min-width:160px;max-width:520px;
-  border:1px solid var(--ring);border-radius:16px;background:#fff;box-shadow:var(--shadow);
-  transition:transform .28s ease, box-shadow .28s ease;
-}
-.tile:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(17,24,39,.18)}
-.tile img{display:block;height:100%;width:auto;object-fit:contain}
-
-/* KAPCSOLAT */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.mapwrap{border-radius:16px;overflow:hidden;border:1px solid var(--ring);box-shadow:var(--shadow);background:#fff}
-.mapwrap iframe{display:block;width:100%;height:360px;border:0}
-.form{display:grid;gap:12px}
-.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--ring);font:inherit}
-
-/* Bottom sheet (mobil) – ha később kell a szolgáltatás „Több infó”-hoz */
-.sheet[hidden]{display:none}
-.sheet{position:fixed;inset:0;z-index:80}
-.sheet__backdrop{position:absolute;inset:0;background:rgba(0,0,0,.35);opacity:0;transition:opacity .2s}
-.sheet__panel{
-  position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;
-  transform:translateY(100%);transition:transform .24s ease;box-shadow:0 -20px 40px rgba(0,0,0,.25);padding:18px
-}
-.sheet.open .sheet__backdrop{opacity:1}
-.sheet.open .sheet__panel{transform:translateY(0)}
-.sheet__close{position:absolute;right:10px;top:10px;border:0;background:#f1f4f9;border-radius:10px;padding:6px 10px;cursor:pointer}
-
-/* Reveal on scroll */
-.reveal-on-scroll{opacity:0;transform:translateY(16px);transition:opacity .35s ease, transform .35s ease}
-.reveal-on-scroll.in{opacity:1;transform:none}
-
-/* Footer */
-.site-footer{padding:30px 0}
-.site-footer small{color:var(--muted)}
-
-/* Responsive */
-@media (min-width: 1280px){
-  .cards{grid-template-columns:repeat(4,1fr)} /* több kártya sorban ha van hely */
-}
-@media (max-width: 1000px){
-  .cards{grid-template-columns:1fr 1fr}
-}
-@media (max-width: 720px){
-  .xl{font-size:38px}
-  .hero{padding:56px 0 44px}
-  .hero-content{min-height:38vh}
-  .cards{grid-template-columns:1fr}
-  .two-col{grid-template-columns:1fr}
-  .f2{grid-template-columns:1fr}
-  .tile{height:160px}
-}
-
-/* Galéria animáció */
-@keyframes autoScroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
-
-.service-card .inner{ min-height: 220px; }             /* nagyobb alapmagasság */
-.service-card .front,
-.service-card .back{ height:100%; }                    /* mindkét oldal ugyanakkora */
-.service-card .back{
-  display:flex; flex-direction:column;                 /* oszlop elrendezés */
-  overflow:hidden;                                     /* ne lógjon ki semmi */
-}
-.service-card .back .more{
-  margin-top:auto;                                     /* gomb fixen alul */
-  padding-top:10px;                                    /* kis lélegzet */
-}
-/* ==== GALÉRIA: egységes csempe + cover vágás + hover nagyítás ==== */
-.auto-gallery { overflow: visible; padding: 12px 24px; }
-.auto-gallery .track { gap: 10px; }
-
-.tile{
-  position: relative;
-  flex: 0 0 auto;
-  width: 280px;            /* egységes szélesség */
-  height: 180px;           /* egységes magasság */
-  border: 1px solid var(--ring);
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: var(--shadow);
-  overflow: hidden;        /* a kép vágása */
-  transition: transform .22s ease, box-shadow .22s ease;
-  will-change: transform;
-}
-.tile img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;       /* LEVÁGÁS (cover) */
-  transform: scale(1);     /* alap nagyítás nélkül */
-  transition: transform .22s ease;
-}
-
-/* hover: csempe emelkedik, kép nagyít, a sáv autogörgetése megáll */
-.auto-gallery:hover .track{ animation-play-state: paused; }
-.tile:hover,
-.tile:focus-within{
-  transform: translateY(-8px);
-  box-shadow: 0 22px 40px rgba(17,24,39,.22);
-  z-index: 2;
-}
-.tile:hover img,
-.tile:focus-within img{
-  transform: scale(1.2);   /* „belül nagyít”, több látszik a képből */
-}
-
-/* mobilon visszafogottabb effekt */
-@media (max-width: 720px){
-  .tile{ width: 240px; height: 160px; }
-  .tile:hover,
-  .tile:focus-within{ transform: translateY(-6px); }
-  .tile:hover img,
-  .tile:focus-within img{ transform: scale(1.12); }
-}
-
-
-
-
+/* footer */
+footer{padding:40px 0;color:#5a6a80}
+footer .container{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer small{opacity:.8}
