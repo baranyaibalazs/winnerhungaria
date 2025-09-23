@@ -170,47 +170,79 @@
   </footer>
 
   <!-- Minimális JS: évszám, e-mail obfuszkáció, scroll reveal, törött képek rejtése -->
-  <script>
-    // Lábléc évszám
-    document.getElementById('y').textContent = new Date().getFullYear();
+ <script>
+  // Lábléc évszám
+  document.getElementById('y') && (document.getElementById('y').textContent = new Date().getFullYear());
 
-    // E-mail obfuszkáció
-    document.querySelectorAll('.email').forEach(el=>{
-      const u=el.getAttribute('data-u'), d=el.getAttribute('data-d');
-      if(u && d){ const a=u+"@"+d; el.innerHTML = '<a href="mailto:'+a+'">'+a+'</a>'; }
+  // E-mail obfuszkáció
+  document.querySelectorAll('.email').forEach(el=>{
+    const u=el.getAttribute('data-u'), d=el.getAttribute('data-d');
+    if(u && d){ const a=u+"@"+d; el.innerHTML = '<a href="mailto:'+a+'">'+a+'</a>'; }
+  });
+
+  // Ajánlatkérés - demo
+  document.getElementById('quoteForm')?.addEventListener('submit', e=>{
+    e.preventDefault();
+    alert('Köszönjük! (Teszt üzemmód)');
+  });
+
+  // Törött képek jelölése (galéria + auto-gallery)
+  function markBrokenImages(scope=document){
+    scope.querySelectorAll('img').forEach(img=>{
+      const mark = ()=>{ img.dataset.broken = "1"; };
+      img.addEventListener('error', mark, {once:true});
+      if(img.complete && img.naturalWidth === 0) mark();
     });
+  }
 
-    // Ajánlatkérés - demo
-    document.getElementById('quoteForm').addEventListener('submit', e=>{
-      e.preventDefault();
-      alert('Köszönjük! (Teszt üzemmód)');
-    });
+  // Scroll reveal – stabil (első ellenőrzés, resize + fallback)
+  function setupReveal(){
+    const els = document.querySelectorAll('.reveal-on-scroll');
+    if(els.length===0){ return; }
 
-    // Törött galériaképek rejtése
-    function hideBroken(){
-      document.querySelectorAll('.gallery figure img').forEach(img=>{
-        const fig = img.parentElement;
-        const markEmpty = ()=>{ fig.classList.add('empty'); img.remove(); };
-        img.addEventListener('error', markEmpty, {once:true});
-        if(img.complete && img.naturalWidth===0) markEmpty();
-      });
-    }
-    document.addEventListener('DOMContentLoaded', hideBroken);
+    const revealNow = el => el.classList.add('in');
 
-    // Scroll reveal
-    (function(){
-      const els = document.querySelectorAll('.reveal-on-scroll');
-      if(!('IntersectionObserver' in window) || els.length===0){
-        els.forEach(el=>el.classList.add('in')); return;
-      }
+    if('IntersectionObserver' in window){
       const io = new IntersectionObserver(entries=>{
         entries.forEach(e=>{
-          if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+          if(e.isIntersecting){ revealNow(e.target); io.unobserve(e.target); }
         });
       }, {threshold:0.12, rootMargin:'0px 0px -5% 0px'});
+
       els.forEach(el=>io.observe(el));
-    })();
-  </script>
+
+      // első ellenőrzés: ami már viewportban van, azonnal jelenjen meg
+      requestAnimationFrame(()=>{
+        els.forEach(el=>{
+          const r = el.getBoundingClientRect();
+          if(r.top < window.innerHeight*0.88 && r.bottom > 0){ revealNow(el); }
+        });
+      });
+
+      // biztonsági fallback: scroll/resize esetén is ellenőrzés
+      ['scroll','resize'].forEach(ev=>{
+        window.addEventListener(ev, ()=>{
+          els.forEach(el=>{
+            if(!el.classList.contains('in')){
+              const r = el.getBoundingClientRect();
+              if(r.top < window.innerHeight*0.88 && r.bottom > 0){ revealNow(el); }
+            }
+          });
+        }, {passive:true});
+      });
+    } else {
+      // Fallback régi böngészőkre
+      els.forEach(revealNow);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    markBrokenImages(document);
+    setupReveal();
+  });
+</script>
+
 </body>
 </html>
+
 
