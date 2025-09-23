@@ -110,18 +110,31 @@
 
   <!-- Galéria -->
   <section id="gallery" class="section">
-    <div class="container">
-      <h2 class="title">Galéria</h2>
-      <div class="gallery">
-        <figure class="reveal-on-scroll"><img src="media/truck-1.jpg" alt=""></figure>
-        <figure class="reveal-on-scroll"><img src="media/truck-2.jpg" alt=""></figure>
-        <figure class="reveal-on-scroll"><img src="media/truck-3.jpg" alt=""></figure>
-        <figure class="reveal-on-scroll"><img src="media/truck-4.jpg" alt=""></figure>
-        <figure class="reveal-on-scroll"><img src="media/truck-5.jpg" alt=""></figure>
-        <figure class="reveal-on-scroll"><img src="media/truck-6.jpg" alt=""></figure>
+  <div class="container">
+    <h2 class="title">Galéria</h2>
+
+    <!-- Auto-scroll galéria (duplázott sor a végtelen hatásért) -->
+    <div class="auto-gallery reveal-on-scroll">
+      <div class="track">
+        <img src="media/truck-1.jpg" alt="">
+        <img src="media/truck-2.jpg" alt="">
+        <img src="media/truck-3.jpg" alt="">
+        <img src="media/truck-4.jpg" alt="">
+        <img src="media/truck-5.jpg" alt="">
+        <img src="media/truck-6.jpg" alt="">
+        <!-- DUPLÁZÁS a végtelen loophoz -->
+        <img src="media/truck-1.jpg" alt="">
+        <img src="media/truck-2.jpg" alt="">
+        <img src="media/truck-3.jpg" alt="">
+        <img src="media/truck-4.jpg" alt="">
+        <img src="media/truck-5.jpg" alt="">
+        <img src="media/truck-6.jpg" alt="">
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
+
 
   <!-- Ajánlatkérés + Kapcsolat -->
   <section id="quote" class="section">
@@ -200,3 +213,4 @@
   </script>
 </body>
 </html>
+
